@@ -1,4 +1,4 @@
-package com.zyh.httpbird.core;
+package com.zyh.httpbird.configuration;
 
 import android.content.Context;
 import android.os.Environment;

@@ -1,8 +1,10 @@
-package com.zyh.httpbird.core;
+package com.zyh.httpbird.configuration;
 
 import android.content.Context;
 import android.text.TextUtils;
 
+import com.zyh.httpbird.core.HurlStack;
+import com.zyh.httpbird.core.JsonConvertFactory;
 import com.zyh.httpbird.interfac.IHttpStack;
 
 import java.io.IOException;
