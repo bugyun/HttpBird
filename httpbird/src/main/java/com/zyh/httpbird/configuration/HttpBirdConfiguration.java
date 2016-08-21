@@ -15,6 +15,8 @@ import java.util.List;
 
 /**
  * Created by ruoyun on 16/8/21.
+ * <p/>
+ * 现在缺少全局的heads设置，以后添加全局的头设置
  */
 public class HttpBirdConfiguration {
 
