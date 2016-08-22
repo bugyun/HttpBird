@@ -1,9 +1,7 @@
 package com.zyh.network;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-
-import com.zyh.httpbird.request.Request;
+import android.support.v7.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,11 +10,18 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+
         Request request = new Request();
+        request.setCallback(new ICallback() {
+            @Override
+            public void onSuccess(String result) {
 
+            }
 
+            @Override
+            public void onFailure(Exception e) {
 
-
-
+            }
+        });
     }
 }
