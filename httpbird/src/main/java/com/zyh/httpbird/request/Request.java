@@ -2,7 +2,7 @@ package com.zyh.httpbird.request;
 
 /**
  * Created by ruoyun on 16/8/21.
- * <p>
+ * <p/>
  * Base class for all network requests.
  *
  * @param <T> The type of parsed response this request expects.
@@ -46,6 +46,18 @@ public abstract class Request<T> {
      * 访问缓存的方式
      */
     private int mCacheMode;
+
+    /**
+     * Whether or not responses to this request should be cached.
+     * 是否应该缓存
+     */
+    private boolean mShouldCache = true;
+
+    /**
+     * Whether or not this request has been canceled.
+     * 是否取消请求
+     */
+    private boolean mCanceled = false;
 
 
 }
