@@ -10,6 +10,12 @@ import com.zyh.httpbird.request.Request;
 public class BasicNetwork implements INetwork {
     @Override
     public NetworkResponse performRequest(Request<?> request) throws HttpBirdError {
+
+
+
+
+
+
         return null;
     }
 }

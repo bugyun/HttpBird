@@ -5,6 +5,7 @@ import java.util.List;
 
 /**
  * Created by ruoyun on 16/8/16.
+ * 未来会做优化。
  * 任务队列管理器
  */
 public class JobQueue {
