@@ -4,8 +4,8 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import com.zyh.httpbird.core.HurlStack;
-import com.zyh.httpbird.core.JsonConvertFactory;
 import com.zyh.httpbird.interfac.IHttpStack;
+import com.zyh.httpbird.interfac.JsonConvertFactory;
 
 import java.io.IOException;
 import java.io.InputStream;

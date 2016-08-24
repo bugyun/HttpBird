@@ -1,4 +1,4 @@
-package com.zyh.httpbird.core;
+package com.zyh.httpbird.interfac;
 
 /**
  * Created by ruoyun on 2016年08月21日
