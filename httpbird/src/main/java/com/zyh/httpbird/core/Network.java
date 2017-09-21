@@ -39,15 +39,15 @@ public class Network implements INetwork {
                 // 标记Http响应头在Cache中的tag
                 Map<String, String> headers = new HashMap<>();
 
-                addCacheHeaders(headers, request.getCacheEntry());
+//                addCacheHeaders(headers, request.getCacheEntry());
                 httpResponse = mHttpStack.performRequest(request, headers);
 
                 int statusCode = httpResponse.getResponseCode();
                 responseHeaders = httpResponse.getHeaders();
 
-                if (statusCode == HttpURLConnection.HTTP_NOT_MODIFIED) { // 304
-                    return new NetworkResponse(HttpURLConnection.HTTP_NOT_MODIFIED, request.getCacheEntry() == null ? null : request.getCacheEntry().data, responseHeaders, true);
-                }
+//                if (statusCode == HttpURLConnection.HTTP_NOT_MODIFIED) { // 304
+//                    return new NetworkResponse(HttpURLConnection.HTTP_NOT_MODIFIED, request.getCacheEntry() == null ? null : request.getCacheEntry().data, responseHeaders, true);
+//                }
 
                 if (httpResponse.getContentStream() != null) {
                     //                    if (request instanceof FileRequest) {
@@ -66,7 +66,7 @@ public class Network implements INetwork {
             } catch (SocketTimeoutException e) {
                 attemptRetryOnException("socket", request, new HttpBirdError(new SocketTimeoutException("socket timeout")));
             } catch (MalformedURLException e) {
-                attemptRetryOnException("connection", request, new HttpBirdError("Bad URL " + request.getUrl(), e));
+//                attemptRetryOnException("connection", request, new HttpBirdError("Bad URL " + request.getUrl(), e));
             } catch (IOException e) {
                 int statusCode;
                 NetworkResponse networkResponse;
@@ -84,7 +84,7 @@ public class Network implements INetwork {
                         throw new HttpBirdError(networkResponse);
                     }
                 } else {
-                    throw new HttpBirdError(String.format("Unexpected response code %d for %s", statusCode, request.getUrl()));
+//                    throw new HttpBirdError(String.format("Unexpected response code %d for %s", statusCode, request.getUrl()));
                 }
             }
         }
@@ -99,20 +99,20 @@ public class Network implements INetwork {
      * @param request The request to use.
      */
     private static void attemptRetryOnException(String logPrefix, Request<?> request, HttpBirdError exception) throws HttpBirdError {
-        RetryPolicy retryPolicy = request.getRetryPolicy();
-        int oldTimeout = request.getTimeoutMs();
-
-        try {
-            if (retryPolicy != null) {
-                retryPolicy.retry(exception);
-            } else {
-                //                Loger.debug("not retry policy");
-            }
-        } catch (HttpBirdError e) {
-            //            Loger.debug(String.format("%s-timeout-giveup [timeout=%s]", logPrefix, oldTimeout));
-            throw e;
-        }
-        //        Loger.debug(String.format("%s-retry [timeout=%s]", logPrefix, oldTimeout));
+//        RetryPolicy retryPolicy = request.getRetryPolicy();
+//        int oldTimeout = request.getTimeoutMs();
+//
+//        try {
+//            if (retryPolicy != null) {
+//                retryPolicy.retry(exception);
+//            } else {
+//                //                Loger.debug("not retry policy");
+//            }
+//        } catch (HttpBirdError e) {
+//            //            Loger.debug(String.format("%s-timeout-giveup [timeout=%s]", logPrefix, oldTimeout));
+//            throw e;
+//        }
+//        //        Loger.debug(String.format("%s-retry [timeout=%s]", logPrefix, oldTimeout));
     }
 
     /**
