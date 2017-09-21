@@ -7,7 +7,7 @@ package com.ruoyun.httpwings;
 public class NetWork {
 
 
-    public Response performRequest(Request request) {
+    public Response performRequest(Request request) throws Exception {
         request.createHttpClient();
         request.setSsl();
         request.setHeadProperty();
