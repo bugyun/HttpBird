@@ -1,1 +1,1 @@
-include ':app', ':httpbird', ':httpwings'
+include ':app',  ':httpwings', ':httpbird'
