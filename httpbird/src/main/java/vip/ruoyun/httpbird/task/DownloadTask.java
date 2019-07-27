@@ -62,7 +62,7 @@ public class DownloadTask implements Task {
             connection.setConnectTimeout(5000);
             connection.setRequestMethod("GET");
             // 设置下载位置
-            long start = mFileInfo.getStart() + mFileInfo.getFinished();
+            long start = mFileInfo.getStartPosition() + mFileInfo.getFinished();
             //设置range 属性的话，服务器认为我们是部分下载，返回的状态值为206 mFileInfo.getEnd()109231
             connection.setRequestProperty("Range", "bytes=" + start + "-");
             // 设置文件写入位置,这里如果用new file("","")会出现权限错误

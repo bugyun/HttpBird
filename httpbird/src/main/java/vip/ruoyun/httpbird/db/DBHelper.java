@@ -11,7 +11,7 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String DB_NAME = "download.db";
     private static final int VERSION = 1;
     private static final String SQL_CREATE = "create table fileInfo_info(_id integer primary key autoincrement," +
-            "url text,fileName text,filePath text, length integer, finished integer,isOver integer,start integer,end integer)";
+            "url text,fileName text,filePath text, length integer, finished integer,isOver integer,startPostion integer,end integer)";
     private static final String SQL_DROP = "drop table if exists fileInfo_info";
 
 

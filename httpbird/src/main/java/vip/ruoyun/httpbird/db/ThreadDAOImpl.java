@@ -34,17 +34,17 @@ public class ThreadDAOImpl implements ThreadDAO {
 
 
     @Override
-    public synchronized void insertFileInfo(FileInfo fileInfo) {
+    public void insertFileInfo(FileInfo fileInfo) {
         L.d("ThreadDAOImpl插入数据");
         SQLiteDatabase db = mHelper.getWritableDatabase();
-        db.execSQL("insert into fileInfo_info(url,fileName,filePath,length,finished,isOver,start,end) values(?,?,?,?,?,?,?,?)",
+        db.execSQL("insert into fileInfo_info(url,fileName,filePath,length,finished,isOver,startPosition,endPosition) values(?,?,?,?,?,?,?,?)",
                 new Object[]{fileInfo.getUrl(), fileInfo.getFileName(), fileInfo.getFilePath(), fileInfo.getLength(),
-                        fileInfo.getFinished(), fileInfo.isOver() ? 1 : 0, fileInfo.getStart(), fileInfo.getEnd()});
+                        fileInfo.getFinished(), fileInfo.isOver() ? 1 : 0, fileInfo.getStartPosition(), fileInfo.getEndPosition()});
         db.close();
     }
 
     @Override
-    public synchronized void deleteFileInfo(String url) {
+    public void deleteFileInfo(String url) {
         L.d("ThreadDAOImpl删除数据");
         SQLiteDatabase db = mHelper.getWritableDatabase();
         db.execSQL("delete from fileInfo_info where url = ? ",
@@ -54,7 +54,7 @@ public class ThreadDAOImpl implements ThreadDAO {
 
 
     @Override
-    public synchronized void updateFileInfo(FileInfo fileInfo) {
+    public void updateFileInfo(FileInfo fileInfo) {
         L.d("ThreadDAOImpl更新数据");
         SQLiteDatabase db = mHelper.getWritableDatabase();
         db.execSQL("update fileInfo_info set finished = ?,isOver=? ,length = ? where url = ?",
@@ -64,7 +64,7 @@ public class ThreadDAOImpl implements ThreadDAO {
 
 
     @Override
-    public synchronized FileInfo getFileInfo(String url) {
+    public FileInfo getFileInfo(String url) {
         L.d("ThreadDAOImpl查询数据");
         SQLiteDatabase db = mHelper.getReadableDatabase();
         Cursor cursor = db.rawQuery("select * from fileInfo_info where url = ?", new String[]{url});
@@ -78,8 +78,8 @@ public class ThreadDAOImpl implements ThreadDAO {
             fileInfo.setLength(cursor.getInt(cursor.getColumnIndex("length")));
             fileInfo.setFinished(cursor.getInt(cursor.getColumnIndex("finished")));
             fileInfo.setOver(cursor.getInt(cursor.getColumnIndex("isOver")) != 0);
-            fileInfo.setStart(cursor.getInt(cursor.getColumnIndex("start")));
-            fileInfo.setEnd(cursor.getInt(cursor.getColumnIndex("end")));
+            fileInfo.setStartPosition(cursor.getInt(cursor.getColumnIndex("startPosition")));
+            fileInfo.setEndPosition(cursor.getInt(cursor.getColumnIndex("endPosition")));
         }
         cursor.close();
         db.close();

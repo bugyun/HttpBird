@@ -11,7 +11,7 @@ public class HttpBirdConfiguration {
     /**
      * Default on-disk cache directory.
      */
-    private static final String DEFAULT_CACHE_DIR = "downloads";
+    private static final String DEFAULT_CACHE_DIR = "httpBird";
     public final Context context;
     public final String cachePath;
     public static boolean isDebug;

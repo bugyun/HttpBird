@@ -6,10 +6,6 @@ package vip.ruoyun.httpbird.entities;
  */
 public class FileInfo {
     /**
-     * id
-     */
-    private int id;
-    /**
      * 网络路径，唯一
      */
     private String url;
@@ -24,7 +20,7 @@ public class FileInfo {
     /**
      * 大小长度
      */
-    private long length  = 0;
+    private long length = 0;
     /**
      * 完成多少字节
      */
@@ -37,12 +33,12 @@ public class FileInfo {
     /**
      * 下载开始的位置，保留字段（多线程下载使用）
      */
-    private long start;
+    private long startPosition;
 
     /**
      * 下载结束的位置，保留字段（多线程下载使用）
      */
-    private long end;
+    private long endPosition;
 
     private String exception;
 
@@ -76,8 +72,8 @@ public class FileInfo {
         this.finished = 0;
         this.isOver = false;
         this.isPause = false;
-        this.start = 0;
-        this.end = 0;
+        this.startPosition = 0;
+        this.endPosition = 0;
         this.exception = "没有异常";
         this.isSupportRanges = false;
     }
@@ -105,14 +101,6 @@ public class FileInfo {
 
     public void setPause(boolean pause) {
         isPause = pause;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getUrl() {
@@ -163,20 +151,21 @@ public class FileInfo {
         isOver = over;
     }
 
-    public long getStart() {
-        return start;
+
+    public long getStartPosition() {
+        return startPosition;
     }
 
-    public void setStart(long start) {
-        this.start = start;
+    public void setStartPosition(long startPosition) {
+        this.startPosition = startPosition;
     }
 
-    public long getEnd() {
-        return end;
+    public long getEndPosition() {
+        return endPosition;
     }
 
-    public void setEnd(long end) {
-        this.end = end;
+    public void setEndPosition(long endPosition) {
+        this.endPosition = endPosition;
     }
 
     public String getException() {
@@ -198,16 +187,19 @@ public class FileInfo {
     @Override
     public String toString() {
         return "FileInfo{" +
-                "id=" + id +
-                ", url='" + url + '\'' +
+                "url='" + url + '\'' +
                 ", fileName='" + fileName + '\'' +
                 ", filePath='" + filePath + '\'' +
                 ", length=" + length +
                 ", finished=" + finished +
                 ", isOver=" + isOver +
-                ", start=" + start +
-                ", end=" + end +
+                ", startPosition=" + startPosition +
+                ", endPosition=" + endPosition +
                 ", exception='" + exception + '\'' +
+                ", isPause=" + isPause +
+                ", isSupportRanges=" + isSupportRanges +
+                ", movedTempUrl='" + movedTempUrl + '\'' +
+                ", response='" + response + '\'' +
                 '}';
     }
 }
