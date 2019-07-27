@@ -39,6 +39,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void testDown() {
         HttpBirdConfiguration configuration = new HttpBirdConfiguration.Builder(this).builderIsDebug(true).build();
+//        HttpBirdConfiguration configuration = new HttpBirdConfiguration.Builder(this)
+//                .builderIsDebug(true)
+//                .builderIsChunked(true)
+//                .builderCachePath("")
+//                .build();
         HttpBird.init(configuration);
         HttpBird.download("http://www.imooc.com/mobile/imooc.apk", "imooc.apk", new FileLoadingListener() {
             @Override
