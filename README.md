@@ -22,41 +22,44 @@ HttpBird.init(configuration);
 ### 下载
 
 ```java
-HttpBird.download("http://www.down.com/xxx.apk", "xxx.apk", new FileLoadingListener() {
+HttpBird.download("")
+        .targetName("")
+        .listener(new FileLoadingListener() {
             @Override
             public void onLoadingStarted(String url) {
-                mTvDown.setText("正在下载");
+
             }
 
             @Override
             public void onProgressUpdate(String url, long current, long total) {
-                mPbProgress.setMax((int) total);
-                mPbProgress.setProgress((int) current);
+
             }
 
             @Override
             public void onLoadingComplete(String url, File loadedFile, String response) {
-                mTvDown.setText("下载完成");
+
             }
 
             @Override
             public void onLoadingFailed(String url, String message) {
-                mTvDown.setText("下载失败");
+
             }
 
             @Override
             public void onLoadingCancelled(String url) {
-                mTvDown.setText("下载暂停");
+
             }
-        });
+        }).go();
 ```
 
 ### 上传
 ```java
 
-HashMap paramMap = new HashMap();
-HashMap fileMap = new HashMap();
-HttpBird.upload("", paramMap, fileMap, new FileLoadingListener() {
+HttpBird.upload("")
+        .addFile("", new File(""))
+        .addParam("", "")
+        .addHeader("", "")
+        .listener(new FileLoadingListener() {
             @Override
             public void onLoadingStarted(String url) {
 
@@ -81,7 +84,7 @@ HttpBird.upload("", paramMap, fileMap, new FileLoadingListener() {
             public void onLoadingCancelled(String url) {
 
             }
-        });
+        }).go();
 ```
 
 
