@@ -5,6 +5,7 @@ import android.content.Context;
 import android.text.TextUtils;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.Map;
 
 import vip.ruoyun.httpbird.core.HttpBirdConfiguration;
@@ -78,6 +79,10 @@ public class HttpBird {
         download(url, target, null);
     }
 
+    public static DownloadBuilder download(String url) {
+        return new DownloadBuilder(url);
+    }
+
     /**
      * 暂停方法
      *
@@ -121,8 +126,6 @@ public class HttpBird {
     /**
      * 上传方法
      */
-
-
     public static void upload(String url, Map<String, String> paramMap, Map<String, File> fileMap, FileLoadingListener listener) {
         L.d("上传方法开始");
         if (TextUtils.isEmpty(url)) {
@@ -155,6 +158,10 @@ public class HttpBird {
         DownloadManager.getInstance().upload(url, paramMap, fileMap, headerMap, listener);
     }
 
+    public static UploadBuilder upload(String url) {
+        return new UploadBuilder(url);
+    }
+
     /**
      * 获得线程池
      *
@@ -183,5 +190,96 @@ public class HttpBird {
 //    public static void upload(File file, String url, Map<String, String> params) {
 //        upload(file, url, params, null);
 //    }
+
+    public static class DownloadBuilder {
+        private String url;
+        private String targetName;
+        private FileLoadingListener listener;
+
+        private DownloadBuilder(String url) {
+            this.url = url;
+        }
+
+        public DownloadBuilder targetName(String targetName) {
+            this.targetName = targetName;
+            return this;
+        }
+
+        public DownloadBuilder listener(FileLoadingListener listener) {
+            this.listener = listener;
+            return this;
+        }
+
+        public void go() {
+            L.d("下载方法开始");
+            if (listener == null) {
+                throw new IllegalArgumentException("listener must not be null");
+            }
+            if (TextUtils.isEmpty(url)) {
+                listener.onLoadingFailed(url, "url may not be empty");
+                return;
+            }
+            if (TextUtils.isEmpty(targetName)) {
+                listener.onLoadingFailed(url, "targetName may not be empty");
+                return;
+            }
+            DownloadManager.getInstance().download(url, targetName, listener);
+        }
+    }
+
+
+    public static class UploadBuilder {
+        private final String url;
+        private Map<String, String> paramMap;
+        private Map<String, File> fileMap;
+        private Map<String, String> headerMap;
+        private FileLoadingListener listener;
+
+        public UploadBuilder(String url) {
+            this.url = url;
+        }
+
+        public UploadBuilder addParam(String key, String value) {
+            if (paramMap == null) {
+                paramMap = new HashMap<>();
+            }
+            paramMap.put(key, value);
+            return this;
+        }
+
+        public UploadBuilder addFile(String key, File file) {
+            if (fileMap == null) {
+                fileMap = new HashMap<>();
+            }
+            fileMap.put(key, file);
+            return this;
+        }
+
+
+        public UploadBuilder addHeader(String key, String value) {
+            if (headerMap == null) {
+                headerMap = new HashMap<>();
+            }
+            headerMap.put(key, value);
+            return this;
+        }
+
+        public UploadBuilder listener(FileLoadingListener listener) {
+            this.listener = listener;
+            return this;
+        }
+
+        public void go() {
+            if (listener == null) {
+                throw new IllegalArgumentException("listener must not be null");
+            }
+            if (TextUtils.isEmpty(url)) {
+                listener.onLoadingFailed(url, "targetName may not be empty");
+                return;
+            }
+            DownloadManager.getInstance().upload(url, paramMap, fileMap, headerMap, listener);
+        }
+
+    }
 
 }

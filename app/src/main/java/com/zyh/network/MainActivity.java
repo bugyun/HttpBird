@@ -115,4 +115,69 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
+
+    private void testDownBuilder() {
+        HttpBird.download("")
+                .targetName("")
+                .listener(new FileLoadingListener() {
+                    @Override
+                    public void onLoadingStarted(String url) {
+
+                    }
+
+                    @Override
+                    public void onProgressUpdate(String url, long current, long total) {
+
+                    }
+
+                    @Override
+                    public void onLoadingComplete(String url, File loadedFile, String response) {
+
+                    }
+
+                    @Override
+                    public void onLoadingFailed(String url, String message) {
+
+                    }
+
+                    @Override
+                    public void onLoadingCancelled(String url) {
+
+                    }
+                }).go();
+    }
+
+    private void testUploadBuilder() {
+        HttpBird.upload("")
+                .addFile("", new File(""))
+                .addParam("", "")
+                .addHeader("", "")
+                .listener(new FileLoadingListener() {
+                    @Override
+                    public void onLoadingStarted(String url) {
+
+                    }
+
+                    @Override
+                    public void onProgressUpdate(String url, long current, long total) {
+
+                    }
+
+                    @Override
+                    public void onLoadingComplete(String url, File loadedFile, String response) {
+
+                    }
+
+                    @Override
+                    public void onLoadingFailed(String url, String message) {
+
+                    }
+
+                    @Override
+                    public void onLoadingCancelled(String url) {
+
+                    }
+                }).go();
+    }
 }
