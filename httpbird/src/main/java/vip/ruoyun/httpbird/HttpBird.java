@@ -45,40 +45,14 @@ public class HttpBird {
             HttpBirdConfiguration configuration = new HttpBirdConfiguration.Builder(context.getApplicationContext()).build();
             DownloadManager.getInstance().init(configuration);
         }
-
     }
 
     /**
      * 下载方法
      *
-     * @param url      路径
-     * @param target   保存名称
-     * @param listener 回调方法
+     * @param url 路径
      * @return
      */
-    public static void download(String url, String target, FileLoadingListener listener) {
-        L.d("下载方法开始");
-        if (TextUtils.isEmpty(url)) {
-            throw new IllegalArgumentException("url may not be null");
-        }
-        if (target == null) {
-            throw new IllegalArgumentException("target may not be null");
-        }
-        DownloadManager.getInstance().download(url, target, listener);
-    }
-
-
-    /**
-     * 下载方法
-     *
-     * @param url    路径
-     * @param target 保存名称
-     * @return
-     */
-    public static void download(String url, String target) {
-        download(url, target, null);
-    }
-
     public static DownloadBuilder download(String url) {
         return new DownloadBuilder(url);
     }
@@ -126,38 +100,6 @@ public class HttpBird {
     /**
      * 上传方法
      */
-    public static void upload(String url, Map<String, String> paramMap, Map<String, File> fileMap, FileLoadingListener listener) {
-        L.d("上传方法开始");
-        if (TextUtils.isEmpty(url)) {
-            throw new IllegalArgumentException("url may not be null");
-        }
-        DownloadManager.getInstance().upload(url, paramMap, fileMap, null, listener);
-    }
-
-    public static void upload(String url, Map<String, String> paramMap, Map<String, File> fileMap) {
-        L.d("上传方法开始");
-        if (TextUtils.isEmpty(url)) {
-            throw new IllegalArgumentException("url may not be null");
-        }
-        DownloadManager.getInstance().upload(url, paramMap, fileMap, null, null);
-    }
-
-    public static void upload(String url, Map<String, String> paramMap, Map<String, File> fileMap, Map<String, String> headerMap) {
-        L.d("上传方法开始");
-        if (TextUtils.isEmpty(url)) {
-            throw new IllegalArgumentException("url may not be null");
-        }
-        DownloadManager.getInstance().upload(url, paramMap, fileMap, headerMap, null);
-    }
-
-    public static void upload(String url, Map<String, String> paramMap, Map<String, File> fileMap, Map<String, String> headerMap, FileLoadingListener listener) {
-        L.d("上传方法开始");
-        if (TextUtils.isEmpty(url)) {
-            throw new IllegalArgumentException("url may not be null");
-        }
-        DownloadManager.getInstance().upload(url, paramMap, fileMap, headerMap, listener);
-    }
-
     public static UploadBuilder upload(String url) {
         return new UploadBuilder(url);
     }
@@ -174,22 +116,6 @@ public class HttpBird {
     public static String getCachePath() {
         return DownloadManager.getInstance().getCachePath();
     }
-
-    //    public static void upload(File file, String url, Map<String, String> params, FileLoadingListener listener) {
-//        L.d("上传方法开始");
-//        if (url == null) {
-//            throw new IllegalArgumentException("url may not be null");
-//        }
-//        if (file == null) {
-//            throw new IllegalArgumentException("file may not be null");
-//        }
-//        DownloadManager.getInstance().upload(file, url, params, listener);
-//    }
-
-
-//    public static void upload(File file, String url, Map<String, String> params) {
-//        upload(file, url, params, null);
-//    }
 
     public static class DownloadBuilder {
         private String url;
