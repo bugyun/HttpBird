@@ -150,9 +150,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void testUploadBuilder() {
         HttpBird.upload("")
-                .addFile("", new File(""))
-                .addParam("", "")
-                .addHeader("", "")
+                .file("", new File(""))
+                .param("", "")
+                .header("", "")
                 .listener(new FileLoadingListener() {
                     @Override
                     public void onLoadingStarted(String url) {

@@ -54,11 +54,10 @@ HttpBird.download("")
 
 ### 上传
 ```java
-
 HttpBird.upload("")
-        .addFile("", new File(""))
-        .addParam("", "")
-        .addHeader("", "")
+        .file("", new File(""))
+        .param("", "")
+        .header("", "")
         .listener(new FileLoadingListener() {
             @Override
             public void onLoadingStarted(String url) {

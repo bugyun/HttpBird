@@ -239,7 +239,7 @@ public class HttpBird {
             this.url = url;
         }
 
-        public UploadBuilder addParam(String key, String value) {
+        public UploadBuilder param(String key, String value) {
             if (paramMap == null) {
                 paramMap = new HashMap<>();
             }
@@ -247,7 +247,7 @@ public class HttpBird {
             return this;
         }
 
-        public UploadBuilder addFile(String key, File file) {
+        public UploadBuilder file(String key, File file) {
             if (fileMap == null) {
                 fileMap = new HashMap<>();
             }
@@ -256,7 +256,7 @@ public class HttpBird {
         }
 
 
-        public UploadBuilder addHeader(String key, String value) {
+        public UploadBuilder header(String key, String value) {
             if (headerMap == null) {
                 headerMap = new HashMap<>();
             }
